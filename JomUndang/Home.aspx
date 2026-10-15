@@ -9,7 +9,7 @@
     <!-- Hero -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>TEST Pass Your Undang Test with Confidence</h1>
+            <h1>Pass Your Undang Test with Confidence</h1>
             <p>Learn the rules, Practice by topic, Try full mock tests, all in one place.</p>
             <div class="hero-buttons">
                 <a href="Register.aspx" class="btn-primary">Start Journey</a>
