@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero-section">
         <div class="hero-content">
             <h1>Pass Your Undang Test with Confidence</h1>
@@ -18,72 +18,106 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features -->
     <section class="features-section">
-        <div class="section-title">
+        <div class="features-header">
+            <span class="features-badge">Our Services</span>
             <h2>Why Choose JomUndang?</h2>
-            <p>Everything you need to prepare for your driving theory test in one place.</p>
         </div>
         
-        <div class="features-grid">
-            <!-- card 1 -->
-            <a href="LearnUndang.aspx" class="feature-card">
-                <div class="feature-icon">&#x1F4DA;</div>
-                <h3>Learn Undang</h3>
-                <p>Study basic Malaysian driving theory knowledge including traffic rules, road signs, and safety regulations.</p>
-            </a>
-            
-            <!-- card 2 -->
-            <a href="PracticeQuiz.aspx" class="feature-card">
-                <div class="feature-icon">&#x1F4DD;</div>
-                <h3>Practice Quiz</h3>
-                <p>Practice KPP questions categorized by topics with unlimited attempts and immediate feedback.</p>
-            </a>
-            
-            <!-- card 3 -->
-            <a href="MockTest.aspx" class="feature-card">
-                <div class="feature-icon">&#x1F4CA;</div>
-                <h3>Mock Test</h3>
-                <p>Simulate the actual test environment with the same time limit and question format. Get instant results.</p>
-            </a>
-            
-            <!-- card 4 -->
-            <a href="TestRegistration.aspx" class="feature-card">
-                <div class="feature-icon">&#x1F6A6;</div>
-                <h3>Test Registration</h3>
-                <p>Register for the actual KPP 01 theory test, select your preferred location, and view your history.</p>
-            </a>
+        <div class="features-container">
+            <div class="feature-row">
+                <div class="feature-text-box">
+                    <h3>Learn Undang</h3>
+                    <ul>
+                        <li>Study basic Malaysian driving theory knowledge.</li>
+                        <li>Includes traffic rules, road signs, and safety regulations.</li>
+                        <li>Comprehensive materials for beginners.</li>
+                    </ul>
+                    <a href="LearnUndang.aspx" class="btn-feature">View More</a>
+                </div>
+                <div class="feature-image-box">
+                    <img src="people.jpg" alt="Learn Undang" />
+                </div>
+            </div>
+
+            <div class="feature-row reverse">
+                <div class="feature-text-box">
+                    <h3>Practice Quiz</h3>
+                    <ul>
+                        <li>Practice KPP questions categorized by topics.</li>
+                        <li>Unlimited attempts with immediate feedback.</li>
+                        <li>Track your progress as you learn.</li>
+                    </ul>
+                    <a href="PracticeQuiz.aspx" class="btn-feature">View More</a>
+                </div>
+                <div class="feature-image-box">
+                    <img src="people.jpg" alt="Practice Quiz" />
+                </div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-text-box">
+                    <h3>Mock Test</h3>
+                    <ul>
+                        <li>Simulate the actual test environment.</li>
+                        <li>Same time limit and question format as the real test.</li>
+                        <li>Get instant results to gauge your readiness.</li>
+                    </ul>
+                    <a href="MockTest.aspx" class="btn-feature">View More</a>
+                </div>
+                <div class="feature-image-box">
+                    <img src="people.jpg" alt="Mock Test" />
+                </div>
+            </div>
+
+            <div class="feature-row reverse">
+                <div class="feature-text-box">
+                    <h3>Test Registration</h3>
+                    <ul>
+                        <li>Register for the actual KPP 01 theory test.</li>
+                        <li>Select your preferred location and date.</li>
+                        <li>View your test history and results easily.</li>
+                    </ul>
+                    <a href="TestRegistration.aspx" class="btn-feature">View More</a>
+                </div>
+                <div class="feature-image-box">
+                    <img src="people.jpg" alt="Test Registration" />
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Meet Team Section -->
-    <section class="team-section">
-        <div class="section-title">
+    <!-- Instructor -->
+    <section class="instructor-section">
+        <div class="instructor-header">
             <h2>Meet Our Team</h2>
-            <p>The developers behind JomUndang</p>
+            <p>At JomUndang, we're dedicated to providing the best learning experience to help you succeed.</p>
         </div>
         
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="team-avatar">
-                    <img src="people.jpg" alt="Calise Chew Huan Qing" />
+        <div class="instructor-grid">
+            <div class="instructor-card">
+                <img src="people.jpg" alt="Calise Chew Huan Qing" class="instructor-bg" />
+                <div class="instructor-overlay">
+                    <h3>Calise Chew Huan Qing</h3>
+                    <p>Senior Coach with 6 years of experience</p>
                 </div>
-                <h3>Calise Chew Huan Qing</h3>
-                <p>Senior Coach with 6 years of experience</p>
             </div>
-            <div class="team-member">
-                <div class="team-avatar">
-                    <img src="people.jpg" alt="Tong Su Yee" />
+            
+            <div class="instructor-card">
+                <img src="people.jpg" alt="Tong Su Yee" class="instructor-bg" />
+                <div class="instructor-overlay">
+                    <h3>Tong Su Yee</h3>
+                    <p>Senior Coach with 5 years of experience</p>
                 </div>
-                <h3>Tong Su Yee</h3>
-                <p>Senior Coach with 5 years of experience</p>
             </div>
-            <div class="team-member">
-                <div class="team-avatar">
-                    <img src="people.jpg" alt="Yeo Pei Wen" />
+            
+            <div class="instructor-card">
+                <img src="people.jpg" alt="Yeo Pei Wen" class="instructor-bg" />
+                <div class="instructor-overlay">
+                    <h3>Yeo Pei Wen</h3>
+                    <p>Senior Coach with 4 years of experience</p>
                 </div>
-                <h3>Yeo Pei Wen</h3>
-                <p>Senior Coach with 4 years of experience</p>
             </div>
         </div>
     </section>
