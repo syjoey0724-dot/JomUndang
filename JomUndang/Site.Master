@@ -1,0 +1,121 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="JomUndang.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JomUndang</title>
+  <link href="~/style.css?v=2" rel="stylesheet" runat="server" />
+  <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+  <form id="form1" runat="server">
+
+    <!-- Header -->
+    <header>
+      <div class="logo-row">
+        <a runat="server" href="~/Home.aspx">
+          <img src="~/logo.png" alt="JomUndang Logo" runat="server" />
+        </a>
+      </div>
+
+      <nav>
+        <ul class="menu">
+          <li class="dropdown">
+            <span class="menu-title" tabindex="0">Learn</span>
+            <div class="dropdown-content">
+              <a runat="server" href="~/Learn.aspx">Learn Undang</a>
+              <a runat="server" href="~/Practice.aspx">Practice Quiz</a>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <span class="menu-title" tabindex="0">Mock Test</span>
+            <div class="dropdown-content">
+              <a runat="server" href="~/MockTest.aspx">Take Mock Test</a>
+              <a runat="server" href="~/Test_History.aspx">Test History</a>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <span class="menu-title" tabindex="0">Test Registration</span>
+            <div class="dropdown-content">
+              <a runat="server" href="~/Registration.aspx">Register</a>
+              <a runat="server" href="~/Registration_History.aspx">Registration History</a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="dropdown dropdown-right">
+          <span class="small-btn" tabindex="0">Login</span>
+          <div class="dropdown-content">
+            <a runat="server" href="~/Login.aspx">Login Now</a>
+            <a runat="server" href="~/Register.aspx">Register</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <asp:ContentPlaceHolder ID="MainContent" runat="server">
+      </asp:ContentPlaceHolder>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+
+        <div class="footer-section">
+          <h4>Learn</h4>
+          <div class="footer-links">
+            <a runat="server" href="~/Learn.aspx">Learn Undang</a>
+            <a runat="server" href="~/Practice.aspx">Practice Quiz</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Mock Test</h4>
+          <div class="footer-links">
+            <a runat="server" href="~/MockTest.aspx">Take Mock Test</a>
+            <a runat="server" href="~/Test_History.aspx">Test History</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Test Registration</h4>
+          <div class="footer-links">
+            <a runat="server" href="~/Registration.aspx">Register</a>
+            <a runat="server" href="~/Registration_History.aspx">Registration History</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <p class="footer-info">
+            <strong>Email</strong><br>
+            <a href="mailto:jomundang@apu.edu.my">jomundang@apu.edu.my</a>
+          </p>
+          <p class="footer-info">
+            <strong>Address</strong><br>
+            No. 11, Jalan Teknologi 5, Taman Teknologi Malaysia, Bukit Jalil, 57000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia
+          </p>
+
+          <div class="footer-map">
+            <iframe
+              src="https://www.google.com/maps?q=Asia+Pacific+University+of+Technology+and+Innovation+Bukit+Jalil&output=embed"
+              title="Map of APU Bukit Jalil"
+              loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=Asia+Pacific+University+of+Technology+and+Innovation+Bukit+Jalil" target="_blank" rel="noopener">Open in Google Maps</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 JomUndang. All rights reserved.</div>
+      </div>
+    </footer>
+
+  </form>
+</body>
+</html>
