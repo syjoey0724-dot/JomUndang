@@ -227,15 +227,15 @@
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
 }
 
-.instructor-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
+    .instructor-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
 
 .instructor-overlay {
     position: absolute;

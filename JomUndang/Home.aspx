@@ -9,7 +9,7 @@
     <!-- Hero -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>Pass Your Undang Test with Confidence</h1>
+            <h1>TEST Pass Your Undang Test with Confidence</h1>
             <p>Learn the rules, Practice by topic, Try full mock tests, all in one place.</p>
             <div class="hero-buttons">
                 <a href="Register.aspx" class="btn-primary">Start Journey</a>
@@ -97,7 +97,7 @@
         
         <div class="instructor-grid">
             <div class="instructor-card">
-                <img src="people.jpg" alt="Calise Chew Huan Qing" class="instructor-bg" />
+                <img src="people.jpg" alt="Calise Chew Huan Qing" />
                 <div class="instructor-overlay">
                     <h3>Calise Chew Huan Qing</h3>
                     <p>Senior Coach with 6 years of experience</p>
@@ -105,7 +105,7 @@
             </div>
             
             <div class="instructor-card">
-                <img src="people.jpg" alt="Tong Su Yee" class="instructor-bg" />
+                <img src="people.jpg" alt="Tong Su Yee" />
                 <div class="instructor-overlay">
                     <h3>Tong Su Yee</h3>
                     <p>Senior Coach with 5 years of experience</p>
@@ -113,7 +113,7 @@
             </div>
             
             <div class="instructor-card">
-                <img src="people.jpg" alt="Yeo Pei Wen" class="instructor-bg" />
+                <img src="people.jpg" alt="Yeo Pei Wen" />
                 <div class="instructor-overlay">
                     <h3>Yeo Pei Wen</h3>
                     <p>Senior Coach with 4 years of experience</p>
