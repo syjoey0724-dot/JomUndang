@@ -37,7 +37,7 @@
                     <a href="LearnUndang.aspx" class="btn-feature">View More</a>
                 </div>
                 <div class="feature-image-box">
-                    <img src="people.jpg" alt="Learn Undang" />
+                    <img src="learn-home.jpg" alt="Learn Undang" />
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
                     <a href="PracticeQuiz.aspx" class="btn-feature">View More</a>
                 </div>
                 <div class="feature-image-box">
-                    <img src="people.jpg" alt="Practice Quiz" />
+                    <img src="p-home.jpg" alt="Practice Quiz" />
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
                     <a href="MockTest.aspx" class="btn-feature">View More</a>
                 </div>
                 <div class="feature-image-box">
-                    <img src="people.jpg" alt="Mock Test" />
+                    <img src="mock-home.jpg" alt="Mock Test" />
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
                     <a href="TestRegistration.aspx" class="btn-feature">View More</a>
                 </div>
                 <div class="feature-image-box">
-                    <img src="people.jpg" alt="Test Registration" />
+                    <img src="regis-home.jpg" alt="Test Registration" />
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
         
         <div class="instructor-grid">
             <div class="instructor-card">
-                <img src="people.jpg" alt="Calise Chew Huan Qing" />
+                <img src="CaliseHome.jpg" alt="Calise Chew Huan Qing" />
                 <div class="instructor-overlay">
                     <h3>Calise Chew Huan Qing</h3>
                     <p>Senior Coach with 6 years of experience</p>
@@ -105,7 +105,7 @@
             </div>
             
             <div class="instructor-card">
-                <img src="people.jpg" alt="Tong Su Yee" />
+                <img src="SYhome.jpg" alt="Tong Su Yee" />
                 <div class="instructor-overlay">
                     <h3>Tong Su Yee</h3>
                     <p>Senior Coach with 5 years of experience</p>
