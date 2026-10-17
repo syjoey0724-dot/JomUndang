@@ -113,7 +113,7 @@
             </div>
             
             <div class="instructor-card">
-                <img src="people.jpg" alt="Yeo Pei Wen" />
+                <img src="PWHome.png" alt="Yeo Pei Wen" />
                 <div class="instructor-overlay">
                     <h3>Yeo Pei Wen</h3>
                     <p>Senior Coach with 4 years of experience</p>
