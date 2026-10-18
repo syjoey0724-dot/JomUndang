@@ -272,7 +272,7 @@ img {
     width: 100%;
     padding: 20px;
     z-index: 2;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+    background-color: rgba(0, 0, 0, 0.6); /* Solid semi-transparent black (no gradient) */
     color: white;
     display: flex;
     flex-direction: column;
@@ -330,6 +330,7 @@ img {
         text-align: center;
     }
 
+    /* Stack text and image vertically */
     .feature-row,
     .feature-row.reverse {
         flex-direction: column;

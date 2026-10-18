@@ -36,6 +36,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* stops sideways scrolling on mobile */
 }
 
 #form1 {
@@ -83,17 +84,18 @@ a:focus-visible,
     outline-offset: 2px;
 }
 
+/* Buttons: solid colour (no gradient) */
 .small-btn {
     display: inline-block;
     padding: 8px 24px;
     color: var(--page-bg);
     text-decoration: none;
     border-radius: 20px;
-    background: linear-gradient(to right, var(--color-1), var(--color-2));
+    background-color: var(--color-2);
 }
 
     .small-btn:hover {
-        background: linear-gradient(to right, var(--color-1-dark), var(--color-2-dark));
+        background-color: var(--color-2-dark);
     }
 
 .cta-button {
@@ -104,22 +106,23 @@ a:focus-visible,
     font-weight: bold;
     text-decoration: none;
     border-radius: 25px;
-    background: linear-gradient(to right, var(--color-1), var(--color-2));
+    background-color: var(--color-2);
 }
 
     .cta-button:hover {
-        background: linear-gradient(to right, var(--color-1-dark), var(--color-2-dark));
+        background-color: var(--color-2-dark);
     }
 
 .cta-button-white {
-    background: var(--page-bg);
+    background-color: var(--page-bg);
     color: var(--accent);
 }
 
     .cta-button-white:hover {
-        background: var(--hero-1);
+        background-color: var(--hero-1);
     }
 
+/* Header */
 header {
     background-color: var(--page-bg);
     border-bottom: 2px solid var(--border);
@@ -136,6 +139,20 @@ header {
         height: auto;
         display: block;
     }
+
+/* Burger button: hidden on desktop */
+.menu-toggle {
+    display: none;
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    background-color: var(--color-2);
+    color: var(--page-bg);
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+}
 
 nav {
     display: flex;
@@ -171,6 +188,7 @@ nav {
     position: relative;
 }
 
+/* Dropdown: hidden until hover (desktop) */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -217,7 +235,7 @@ nav {
 }
 
 .hero {
-    background: linear-gradient(135deg, var(--hero-1), var(--hero-2));
+    background-color: var(--hero-1); /* solid colour (no gradient) */
     padding: 90px 20px;
     text-align: center;
 }
@@ -256,7 +274,7 @@ nav {
     }
 
 .cta-section {
-    background: linear-gradient(135deg, var(--color-1), var(--color-2));
+    background-color: var(--color-2-dark); /* solid colour (no gradient) */
     color: var(--page-bg);
     padding: 70px 0;
     text-align: center;
@@ -352,3 +370,102 @@ footer {
         .footer-bottom a:hover {
             color: var(--color-2);
         }
+
+/* ===== Responsive ===== */
+
+/* Tablet: footer 2 columns */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Mobile: burger menu + Login on the same row */
+@media (max-width: 768px) {
+    /* nav becomes one bar: [Menu button] [Login] */
+    nav {
+        flex-direction: row;
+        align-items: center;
+        padding: 0;
+        background-color: var(--color-2);
+    }
+
+    .menu-toggle {
+        display: block;
+        flex: 1;
+        width: auto;
+        order: 1;
+    }
+
+    /* Login stays visible on the right */
+    .dropdown-right {
+        order: 2;
+        padding-right: 12px;
+    }
+
+        .dropdown-right .small-btn {
+            background-color: var(--page-bg);
+            color: var(--accent);
+        }
+
+        /* Login dropdown: shown on tap, floats under the button */
+        .dropdown-right .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            left: auto;
+            background-color: var(--page-bg);
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 20px var(--shadow);
+            padding: 6px 0;
+        }
+
+    /* Menu list: hidden by default, shown when nav has class "open" */
+    .menu {
+        order: 3;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 15px 12px;
+        background-color: var(--page-bg);
+    }
+
+    nav.open .menu {
+        display: flex;
+    }
+
+    /* No hover on phone, so menu dropdown links are always shown */
+    .menu .dropdown-content {
+        display: block;
+        position: static;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0 0 6px 16px;
+    }
+
+    .hero {
+        padding: 50px 15px;
+    }
+
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+    .section-title h2,
+    .cta-section h2 {
+        font-size: 1.7rem;
+    }
+}
+
+/* Small phone: footer 1 column */
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}

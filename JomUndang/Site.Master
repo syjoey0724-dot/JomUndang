@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JomUndang</title>
-  <link href="~/style.css?v=2" rel="stylesheet" runat="server" />
+  <link href="~/style.css?v=3" rel="stylesheet" runat="server" />
   <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
@@ -20,7 +20,10 @@
         </a>
       </div>
 
-      <nav>
+            <nav id="mainNav">
+        <!-- Burger button: only shown on mobile -->
+        <button type="button" id="menuToggle" class="menu-toggle">&#9776; Menu</button>
+
         <ul class="menu">
           <li class="dropdown">
             <span class="menu-title" tabindex="0">Learn</span>
@@ -117,5 +120,12 @@
     </footer>
 
   </form>
+
+  <script>
+    // Click burger: add / remove class "open" on the menu
+    document.getElementById("menuToggle").onclick = function () {
+      document.getElementById("mainNav").classList.toggle("open");
+    };
+  </script>
 </body>
 </html>
