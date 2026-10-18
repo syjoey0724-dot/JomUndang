@@ -7,7 +7,6 @@
 
     <section class="auth-section register-section">
 
-        <!-- Left: title and short message -->
         <div class="register-intro">
             <h1>Create Account</h1>
             <p>Join JomUndang and start preparing for your Undang test.</p>
@@ -18,7 +17,7 @@
             </ul>
         </div>
 
-        <!-- Center: register form -->
+        <!-- register form -->
         <div class="auth-card">
 
             <!-- Full name -->
