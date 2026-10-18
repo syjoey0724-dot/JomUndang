@@ -37,7 +37,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* no sideways scroll on mobile */
+    overflow-x: hidden;
 }
 
 #form1 {
@@ -47,7 +47,7 @@ body {
 }
 
 main {
-    flex: 1; /* pushes footer to the bottom */
+    flex: 1;
 }
 
 .container {
@@ -140,7 +140,6 @@ header {
         display: block;
     }
 
-/* Burger button (hidden on desktop) */
 .menu-toggle {
     display: none;
     width: 100%;
@@ -188,7 +187,6 @@ nav {
     position: relative;
 }
 
-/* Dropdown (shows on hover) */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -373,8 +371,6 @@ footer {
         }
 
 /* Login and Forgot Password */
-
-/* Background image, card on the right */
 .auth-section {
     min-height: 650px;
     display: flex;
@@ -387,7 +383,6 @@ footer {
     background-repeat: no-repeat;
 }
 
-/* Frosted glass card: transparent white + blur */
 .auth-card {
     width: 100%;
     max-width: 430px;
@@ -424,7 +419,6 @@ footer {
     margin-bottom: 25px;
 }
 
-/* Form fields */
 .form-group {
     margin-bottom: 18px;
 }
@@ -449,7 +443,6 @@ footer {
             background-color: #ffffff;
         }
 
-/* Validation error (red text) */
 .field-error {
     display: block;
     color: #dc2626;
@@ -457,7 +450,6 @@ footer {
     margin-top: 5px;
 }
 
-/* Forgot password link (right side) */
 .auth-options {
     display: flex;
     justify-content: flex-end;
@@ -503,7 +495,7 @@ footer {
         font-weight: 600;
     }
 
-/* Register: 3 columns (text on the left, form in the center, right side empty) */
+/* Register */
 .register-section {
     display: grid;
     grid-template-columns: 1fr minmax(0, 480px) 1fr;
@@ -511,7 +503,6 @@ footer {
     background-image: url('register-bg.jpeg');
 }
 
-/* Left text */
 .register-intro {
     grid-column: 1;
     max-width: 380px;
@@ -539,36 +530,144 @@ footer {
         margin-bottom: 6px;
     }
 
-/* Form card in the center, whiter because the road image is dark */
 .register-section .auth-card {
     grid-column: 2;
     max-width: 480px;
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-/* Responsive */
+/* Message box */
+.auth-message {
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    margin-bottom: 18px;
+}
 
-/* Tablet: footer 2 columns, register becomes 1 column */
+.auth-message-success {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+.auth-message-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.auth-footer-sub {
+    margin-top: 6px;
+    font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------
+   Meet Our Team Section
+--------------------------------------------------- */
+
+/* 顶部排版：左标题，右简介 */
+.team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+    .team-header h2 {
+        font-size: 2.4rem;
+        color: var(--heading);
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .team-header p {
+        color: #475569;
+        font-size: 0.95rem;
+        max-width: 380px;
+        text-align: left;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+/* 3列网格 */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* 单张卡片：圆角 + 强制竖图 */
+.team-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4; /* 关键：强制卡片为竖长形 */
+    background-color: #000;
+}
+
+    .team-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* 关键：底部黑色渐变遮罩 */
+    .team-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
+    }
+
+/* 文字绝对定位，白字 */
+.team-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    z-index: 2;
+    color: #ffffff;
+}
+
+    .team-info h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+    }
+
+    .team-info p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.5;
+        margin: 0;
+    }
+
+/* Tablet */
 @media (max-width: 992px) {
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
 
-    /* Text goes on top, form below */
     .register-section {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 
-        .register-intro,
-        .register-section .auth-card {
+        .register-intro, .register-section .auth-card {
             grid-column: 1;
             width: 100%;
             max-width: 480px;
             margin: 0 auto;
         }
 
-    /* White box behind the text so it is easy to read */
     .register-intro {
         background-color: rgba(255, 255, 255, 0.7);
         padding: 20px;
@@ -582,11 +681,21 @@ footer {
         .register-intro ul {
             display: none;
         }
+
+    /* Team 响应式 */
+    .team-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-    /* Menu bar: burger on the left, Login on the right */
     nav {
         flex-direction: row;
         align-items: center;
@@ -622,7 +731,6 @@ footer {
             padding: 6px 0;
         }
 
-    /* Menu list: hidden until burger is clicked (class "open") */
     .menu {
         order: 3;
         width: 100%;
@@ -637,7 +745,6 @@ footer {
         display: flex;
     }
 
-    /* No hover on phone, so always show the links */
     .menu .dropdown-content {
         display: block;
         position: static;
@@ -659,12 +766,10 @@ footer {
             font-size: 1.1rem;
         }
 
-    .section-title h2,
-    .cta-section h2 {
+    .section-title h2, .cta-section h2 {
         font-size: 1.7rem;
     }
 
-    /* Login and Register card in the middle */
     .auth-section {
         justify-content: center;
         padding: 30px 15px;
@@ -675,15 +780,27 @@ footer {
         padding: 30px 22px;
     }
 
-    /* Register background: show the car */
     .register-section {
         background-position: 60% center;
     }
 }
 
-/* Small phone: footer 1 column */
+/* Small phone */
 @media (max-width: 600px) {
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Team 响应式 */
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-card {
+        aspect-ratio: 4 / 5;
+    }
+
+    .team-header h2 {
+        font-size: 2rem;
     }
 }

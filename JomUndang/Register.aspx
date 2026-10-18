@@ -9,7 +9,6 @@
 
         <!-- Left: title and short message -->
         <div class="register-intro">
-            <span class="auth-badge">New Member</span>
             <h1>Create Account</h1>
             <p>Join JomUndang and start preparing for your Undang test.</p>
             <ul>
