@@ -20,8 +20,8 @@
         </a>
       </div>
 
-            <nav id="mainNav">
-        <!-- Burger button: only shown on mobile -->
+      <nav id="mainNav">
+        <!-- Mobile Menu -->
         <button type="button" id="menuToggle" class="menu-toggle">&#9776; Menu</button>
 
         <ul class="menu">
@@ -50,25 +50,46 @@
           </li>
         </ul>
 
-        <div class="dropdown dropdown-right">
-          <span class="small-btn" tabindex="0">Login</span>
-          <div class="dropdown-content">
-            <a runat="server" href="~/Login.aspx">Login Now</a>
-            <a runat="server" href="~/Register.aspx">Register</a>
-          </div>
-        </div>
+        <!-- User Authentication State -->
+        <asp:LoginView ID="LoginView1" runat="server">
+          
+          <AnonymousTemplate>
+            <div class="dropdown dropdown-right">
+              <span class="small-btn" tabindex="0">Login</span>
+              <div class="dropdown-content">
+                <a runat="server" href="~/Login.aspx">Login Now</a>
+                <a runat="server" href="~/Register.aspx">Register</a>
+              </div>
+            </div>
+          </AnonymousTemplate>
+          
+          <LoggedInTemplate>
+            <div class="dropdown dropdown-right">
+              <!-- Profile Image -->
+              <img src="ProfileLogo.png" alt="Profile" tabindex="0" style="width: 45px; height: 45px; object-fit: contain; background-color: transparent; border: none; cursor: pointer; display: block;" />
+              <div class="dropdown-content">
+                <!-- Dynamic Dashboard Link -->
+                <asp:Label ID="lblDashboardLink" runat="server"></asp:Label>
+                
+                <!-- Logout -->
+                <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CausesValidation="false">Logout</asp:LinkButton>
+              </div>
+            </div>
+          </LoggedInTemplate>
+          
+        </asp:LoginView>
+        
       </nav>
     </header>
 
+    <!-- Main Content -->
     <main>
-      <asp:ContentPlaceHolder ID="MainContent" runat="server">
-      </asp:ContentPlaceHolder>
+      <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
     </main>
 
     <!-- Footer -->
     <footer>
       <div class="footer-grid">
-
         <div class="footer-section">
           <h4>Learn</h4>
           <div class="footer-links">
@@ -76,7 +97,6 @@
             <a runat="server" href="~/Practice.aspx">Practice Quiz</a>
           </div>
         </div>
-
         <div class="footer-section">
           <h4>Mock Test</h4>
           <div class="footer-links">
@@ -84,7 +104,6 @@
             <a runat="server" href="~/Test_History.aspx">Test History</a>
           </div>
         </div>
-
         <div class="footer-section">
           <h4>Test Registration</h4>
           <div class="footer-links">
@@ -92,7 +111,6 @@
             <a runat="server" href="~/Registration_History.aspx">Registration History</a>
           </div>
         </div>
-
         <div class="footer-section">
           <p class="footer-info">
             <strong>Email</strong><br>
@@ -102,16 +120,11 @@
             <strong>Address</strong><br>
             No. 11, Jalan Teknologi 5, Taman Teknologi Malaysia, Bukit Jalil, 57000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia
           </p>
-
           <div class="footer-map">
-            <iframe
-              src="https://www.google.com/maps?q=Asia+Pacific+University+of+Technology+and+Innovation+Bukit+Jalil&output=embed"
-              title="Map of APU Bukit Jalil"
-              loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps?q=Asia+Pacific+University+of+Technology+and+Innovation+Bukit+Jalil&output=embed" title="Map" loading="lazy"></iframe>
             <a href="https://www.google.com/maps/search/?api=1&query=Asia+Pacific+University+of+Technology+and+Innovation+Bukit+Jalil" target="_blank" rel="noopener">Open in Google Maps</a>
           </div>
         </div>
-
       </div>
 
       <div class="footer-bottom">
@@ -121,8 +134,8 @@
 
   </form>
 
+  <!-- Mobile Menu Script -->
   <script>
-    // Click burger: add / remove class "open" on the menu
     document.getElementById("menuToggle").onclick = function () {
       document.getElementById("mainNav").classList.toggle("open");
     };

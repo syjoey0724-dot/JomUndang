@@ -19,6 +19,11 @@
 
         <!-- register form -->
         <div class="auth-card">
+            
+            <!-- Message Box -->
+            <asp:Panel ID="pnlMessage" runat="server" Visible="false" CssClass="auth-message">
+                <asp:Label ID="lblMessage" runat="server"></asp:Label>
+            </asp:Panel>
 
             <!-- Full name -->
             <div class="form-group">
@@ -29,7 +34,7 @@
                     Display="Dynamic" CssClass="field-error"></asp:RequiredFieldValidator>
             </div>
 
-            <!-- Age: must be a number from 17 to 100 -->
+            <!-- Age -->
             <div class="form-group">
                 <asp:Label ID="lblAge" runat="server" AssociatedControlID="txtAge" Text="Age"></asp:Label>
                 <asp:TextBox ID="txtAge" runat="server" placeholder="Must be 17 or above"></asp:TextBox>
@@ -42,7 +47,7 @@
                     Display="Dynamic" CssClass="field-error"></asp:RangeValidator>
             </div>
 
-            <!-- Email: required + format -->
+            <!-- Email -->
             <div class="form-group">
                 <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" Text="Email"></asp:Label>
                 <asp:TextBox ID="txtEmail" runat="server" placeholder="jom@gmail.com"></asp:TextBox>
@@ -55,7 +60,16 @@
                     Display="Dynamic" CssClass="field-error"></asp:RegularExpressionValidator>
             </div>
 
-            <!-- Password: at least 8 characters -->
+            <!-- Role Selection (NEW) -->
+            <div class="form-group">
+                <asp:Label ID="lblRole" runat="server" AssociatedControlID="ddlRole" Text="Register As"></asp:Label>
+                <asp:DropDownList ID="ddlRole" runat="server" style="width: 100%; padding: 12px 14px; font-size: 1rem; background-color: rgba(255, 255, 255, 0.8); border: 1px solid var(--border); border-radius: 8px;">
+                    <asp:ListItem Text="Customer" Value="Customer"></asp:ListItem>
+                    <asp:ListItem Text="Admin" Value="Admin"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+
+            <!-- Password -->
             <div class="form-group">
                 <asp:Label ID="lblPassword" runat="server" AssociatedControlID="txtPassword" Text="Password"></asp:Label>
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="At least 8 characters"></asp:TextBox>
@@ -68,7 +82,7 @@
                     Display="Dynamic" CssClass="field-error"></asp:RegularExpressionValidator>
             </div>
 
-            <!-- Confirm password: must match password -->
+            <!-- Confirm password -->
             <div class="form-group">
                 <asp:Label ID="lblConfirm" runat="server" AssociatedControlID="txtConfirm" Text="Confirm Password"></asp:Label>
                 <asp:TextBox ID="txtConfirm" runat="server" TextMode="Password" placeholder="Enter your password again"></asp:TextBox>
@@ -81,7 +95,7 @@
                     Display="Dynamic" CssClass="field-error"></asp:CompareValidator>
             </div>
 
-            <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="auth-btn" />
+            <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="auth-btn" OnClick="btnRegister_Click" />
 
             <p class="auth-footer">
                 Already have an account? <a href="Login.aspx">Login here</a>
