@@ -1,0 +1,117 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="JomUndang.AdminMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JomUndang - Admin Panel</title>
+  <link href="~/style.css?v=3" rel="stylesheet" runat="server" />
+  <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+  <form id="form1" runat="server">
+
+    <!-- Header -->
+    <header>
+      <div class="logo-row">
+        <a runat="server" href="~/AdminDashboard.aspx">
+          <img src="~/logo.png" alt="JomUndang Logo" runat="server" />
+        </a>
+      </div>
+
+      <nav id="mainNav">
+        <!-- Mobile Menu -->
+        <button type="button" id="menuToggle" class="menu-toggle">&#9776; Menu</button>
+
+        <!-- Admin Menu -->
+        <ul class="menu">
+          <li class="dropdown">
+            <a href="AdminDashboard.aspx" class="menu-title" style="text-decoration: none;">Dashboard</a>
+          </li>
+          <li class="dropdown">
+            <a href="ManageQuestions.aspx" class="menu-title" style="text-decoration: none;">Manage Questions</a>
+          </li>
+          <li class="dropdown">
+            <a href="ManageTests.aspx" class="menu-title" style="text-decoration: none;">Manage Tests</a>
+          </li>
+        </ul>
+
+        <!-- Logout Section -->
+        <div class="dropdown dropdown-right">
+          <span class="small-btn" tabindex="0">Logout</span>
+          <div class="dropdown-content">
+            <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CausesValidation="false">Confirm Logout</asp:LinkButton>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <!-- Col 1: Admin Links -->
+        <div class="footer-section">
+          <h4>Admin Panel</h4>
+          <div class="footer-links">
+            <a runat="server" href="~/AdminDashboard.aspx">Dashboard</a>
+            <a runat="server" href="~/ManageQuestions.aspx">Manage Questions</a>
+            <a runat="server" href="~/ManageTests.aspx">Manage Tests</a>
+          </div>
+        </div>
+
+        <!-- Col 2: System Actions -->
+        <div class="footer-section">
+          <h4>System Actions</h4>
+          <div class="footer-links">
+            <a runat="server" href="~/AdminDashboard.aspx">Pending Approvals</a>
+            <a href="#" onclick="alert('Logout from top right menu.'); return false;">Logout</a>
+          </div>
+        </div>
+
+        <!-- Col 3: Support -->
+        <div class="footer-section">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="mailto:jomundang@apu.edu.my">Contact Support</a>
+            <a href="#">Documentation</a>
+          </div>
+        </div>
+
+        <!-- Col 4: Contact & Map -->
+        <div class="footer-section">
+          <p class="footer-info">
+            <strong>Email</strong><br>
+            <a href="mailto:jomundang@apu.edu.my">jomundang@apu.edu.my</a>
+          </p>
+          <p class="footer-info">
+            <strong>Address</strong><br>
+            No. 11, Jalan Teknologi 5, Taman Teknologi Malaysia, Bukit Jalil, 57000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia
+          </p>
+          <div class="footer-map">
+            <iframe src="https://www.google.com/maps?q=Asia+Pacific+University+of+Technology+and+Innovation+Bukit+Jalil&output=embed" title="Map" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=Asia+Pacific+University+of+Technology+and+Innovation+Bukit+Jalil" target="_blank" rel="noopener">Open in Google Maps</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 JomUndang Admin. All rights reserved.</div>
+      </div>
+    </footer>
+
+  </form>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    document.getElementById("menuToggle").onclick = function () {
+      document.getElementById("mainNav").classList.toggle("open");
+    };
+  </script>
+</body>
+</html>
