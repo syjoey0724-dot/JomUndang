@@ -123,15 +123,6 @@ namespace JomUndang
         protected global::System.Web.UI.WebControls.Label lblTotalUsers;
 
         /// <summary>
-        /// lblPendingUsers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPendingUsers;
-
-        /// <summary>
         /// lblTotalTests control.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,15 @@ namespace JomUndang
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalTests;
+
+        /// <summary>
+        /// lblPendingUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPendingUsers;
 
         /// <summary>
         /// pnlApprovalMessage control.
@@ -157,5 +157,23 @@ namespace JomUndang
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPendingAdmins;
+
+        /// <summary>
+        /// ddlFilterResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFilterResult;
+
+        /// <summary>
+        /// gvTestResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTestResults;
     }
 }

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Admin Dashboard" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="JomUndang.AdminDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <!-- Styles -->
     <style>
         .admin-table { width: 100%; border-collapse: collapse; table-layout: auto; }
         .admin-table th { text-align: left; padding: 15px; background-color: #f8fafc; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
@@ -12,8 +13,21 @@
             text-align: right !important; 
         }
         
-        .btn-approve { background-color: #22c55e; color: white; border-radius: 8px; padding: 8px 16px; text-decoration: none; font-size: 0.9rem; margin-right: 5px; display: inline-block; }
-        .btn-reject { background-color: #ef4444; color: white; border-radius: 8px; padding: 8px 16px; text-decoration: none; font-size: 0.9rem; display: inline-block; }
+        .btn-approve { background-color: #dcfce7; color: #166534; border-radius: 8px; padding: 6px 16px; text-decoration: none; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-right: 5px; }
+        .btn-reject { background-color: transparent; color: #64748b; border-radius: 8px; padding: 6px 12px; text-decoration: none; font-size: 0.9rem; display: inline-block; }
+        
+        .status-pass { background-color: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .status-fail { background-color: #fee2e2; color: #991b1b; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        
+        .filter-select { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background-color: #fff; font-size: 0.9rem; outline: none; }
+        
+        /* Vertical Stats Card */
+        .v-stats-card { display: flex; flex-direction: column; background: #fff; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.02); overflow: hidden; }
+        .v-stat-item { padding: 20px 25px; border-bottom: 1px solid var(--border); text-decoration: none; display: block; transition: background 0.2s; }
+        .v-stat-item:last-child { border-bottom: none; }
+        .v-stat-item:hover { background-color: #f8fafc; }
+        .v-stat-label { color: #64748b; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
+        .v-stat-value { font-size: 2rem; font-weight: 700; line-height: 1; }
     </style>
 </asp:Content>
 
@@ -22,14 +36,14 @@
         <div class="container" style="max-width: 1100px;">
             
             <!-- Title -->
-            <div style="margin-bottom: 40px;">
+            <div style="margin-bottom: 30px;">
                 <h1 style="font-size: 2.2rem; color: var(--heading); font-weight: 700; margin: 0;">Admin Dashboard</h1>
             </div>
 
-            <!-- Main Layout -->
-            <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: start; margin-bottom: 40px;">
+            <!-- Top Layout -->
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: stretch; margin-bottom: 30px;">
                 
-                <!-- Left Side: Edit Profile -->
+                <!-- Edit Profile -->
                 <div style="flex: 2 1 500px; background: #fff; padding: 35px 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid #f1f5f9;">
                     <h3 style="margin: 0 0 25px 0; font-size: 1.3rem; color: var(--heading); font-weight: 600;">Edit Profile</h3>
                     
@@ -57,52 +71,51 @@
                     <asp:Button ID="btnUpdate" runat="server" Text="Update Profile" CssClass="auth-btn" OnClick="btnUpdate_Click" style="width: auto; padding: 12px 35px; border-radius: 10px; font-size: 1rem; font-weight: 600;" />
                 </div>
 
-                <!-- Right Side: Stats & Actions -->
-                <div style="flex: 1 1 350px; display: flex; flex-direction: column; gap: 25px;">
+                <!-- Right Side: Stats & Links -->
+                <div style="flex: 1 1 300px; display: flex; flex-direction: column;">
                     
-                    <!-- Stats Section -->
-                    <div style="display: flex; flex-direction: column; gap: 15px;">
-                        <div style="background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <h2 style="font-size: 1.8rem; color: var(--color-2); margin: 0; font-weight: 700;">
-                                    <asp:Label ID="lblTotalUsers" runat="server" Text="0"></asp:Label>
-                                </h2>
-                                <p style="margin: 0; font-weight: 500; color: #64748b; font-size: 0.9rem;">Total Users</p>
+                    <div class="v-stats-card">
+                        <!-- Total Users -->
+                        <div class="v-stat-item" style="cursor: default;">
+                            <div class="v-stat-label">Total users</div>
+                            <div class="v-stat-value" style="color: var(--heading);">
+                                <asp:Label ID="lblTotalUsers" runat="server" Text="0"></asp:Label>
+                            </div>
+                        </div>
+                        
+                        <!-- Tests Taken -->
+                        <a href="ManageTests.aspx" class="v-stat-item">
+                            <div class="v-stat-label">
+                                <span>Tests taken</span>
+                                <span style="color: var(--accent); font-weight: 600;">Manage Tests</span>
+                            </div>
+                            <div class="v-stat-value" style="color: var(--heading);">
+                                <asp:Label ID="lblTotalTests" runat="server" Text="0"></asp:Label>
+                            </div>
+                        </a>
+
+                        <!-- Pending Approvals -->
+                        <div class="v-stat-item" style="cursor: default;">
+                            <div class="v-stat-label">Pending Approvals</div>
+                            <div class="v-stat-value" style="color: #dc2626;">
+                                <asp:Label ID="lblPendingUsers" runat="server" Text="0"></asp:Label>
                             </div>
                         </div>
 
-                        <div style="background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <h2 style="font-size: 1.8rem; color: #dc2626; margin: 0; font-weight: 700;">
-                                    <asp:Label ID="lblPendingUsers" runat="server" Text="0"></asp:Label>
-                                </h2>
-                                <p style="margin: 0; font-weight: 500; color: #64748b; font-size: 0.9rem;">Pending Approvals</p>
-                            </div>
-                        </div>
-
-                        <div style="background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <h2 style="font-size: 1.8rem; color: #166534; margin: 0; font-weight: 700;">
-                                    <asp:Label ID="lblTotalTests" runat="server" Text="0"></asp:Label>
-                                </h2>
-                                <p style="margin: 0; font-weight: 500; color: #64748b; font-size: 0.9rem;">Tests Taken</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Actions -->
-                    <div>
-                        <a href="ManageQuestions.aspx" class="cta-button" style="text-align: center; padding: 14px; border-radius: 12px; display: block; margin-bottom: 15px;">Manage Questions</a>
-                        <a href="ManageTests.aspx" class="cta-button" style="text-align: center; padding: 14px; border-radius: 12px; display: block;">Manage Tests</a>
+                        <!-- Manage Questions -->
+                        <a href="ManageQuestions.aspx" class="v-stat-item" style="display: flex; align-items: center; justify-content: center; min-height: 75px; background-color: #f8fafc;">
+                            <span style="color: var(--accent); font-weight: 600; font-size: 0.95rem;">Manage Questions</span>
+                        </a>
                     </div>
 
                 </div>
             </div>
 
-            <!-- Bottom Row: Pending Approvals -->
-            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <!-- Pending Approvals Grid -->
+            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; margin-bottom: 30px;">
+                <div style="margin-bottom: 10px;">
                     <h3 style="margin: 0; font-size: 1.3rem; color: var(--heading); font-weight: 600;">Pending Admin Approvals</h3>
+                    <p style="margin: 5px 0 20px 0; color: #64748b; font-size: 0.9rem;">People who registered as admin and are waiting for access.</p>
                 </div>
 
                 <asp:Panel ID="pnlApprovalMessage" runat="server" Visible="false" CssClass="auth-message"></asp:Panel>
@@ -135,6 +148,43 @@
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+
+            <!-- Test Results Grid -->
+            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0; font-size: 1.3rem; color: var(--heading); font-weight: 600;">Latest test results</h3>
+                    
+                    <!-- Filter Dropdown -->
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #64748b; font-size: 0.9rem;">Filter by result</span>
+                        <asp:DropDownList ID="ddlFilterResult" runat="server" CssClass="filter-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFilterResult_SelectedIndexChanged">
+                            <asp:ListItem Text="All" Value="All"></asp:ListItem>
+                            <asp:ListItem Text="Pass" Value="Pass"></asp:ListItem>
+                            <asp:ListItem Text="Fail" Value="Fail"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+
+                <asp:GridView ID="gvTestResults" runat="server" AutoGenerateColumns="False" 
+                    CssClass="admin-table" GridLines="None" Width="100%"
+                    EmptyDataText="No test results found.">
+                    <Columns>
+                        <asp:BoundField DataField="FullName" HeaderText="Student" ItemStyle-ForeColor="#1e1b4b" />
+                        <asp:BoundField DataField="TestName" HeaderText="Test" ItemStyle-ForeColor="#1e1b4b" />
+                        <asp:BoundField DataField="ScoreDisplay" HeaderText="Score" ItemStyle-ForeColor="#1e1b4b" />
+                        
+                        <asp:TemplateField HeaderText="Result">
+                            <ItemTemplate>
+                                <span class='<%# Convert.ToBoolean(Eval("IsPassed")) ? "status-pass" : "status-fail" %>'>
+                                    <%# Convert.ToBoolean(Eval("IsPassed")) ? "Pass" : "Fail" %>
+                                </span>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:BoundField DataField="TestDate" HeaderText="When" DataFormatString="{0:dd MMM yyyy}" ItemStyle-ForeColor="#1e1b4b" />
                     </Columns>
                 </asp:GridView>
             </div>

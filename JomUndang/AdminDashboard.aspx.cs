@@ -11,7 +11,7 @@ namespace JomUndang
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Auth Check
+            // Admin Auth Check
             if (Session["UserID"] == null || Session["Role"]?.ToString() != "Admin")
             {
                 Response.Redirect("Login.aspx");
@@ -22,10 +22,11 @@ namespace JomUndang
                 LoadAdminProfile();
                 LoadStats();
                 LoadPendingAdmins();
+                LoadTestResults(); // Load the new table
             }
         }
 
-        // Load Profile Data
+        // Load Admin Profile
         private void LoadAdminProfile()
         {
             using (SqlConnection conn = new SqlConnection(connString))
@@ -45,7 +46,7 @@ namespace JomUndang
             }
         }
 
-        // Update Profile Action
+        // Update Admin Profile
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             if (!Page.IsValid) return;
@@ -81,7 +82,7 @@ namespace JomUndang
             }
         }
 
-        // Load Dashboard Stats
+        // Load Stats
         private void LoadStats()
         {
             using (SqlConnection conn = new SqlConnection(connString))
@@ -98,7 +99,7 @@ namespace JomUndang
             }
         }
 
-        // Load Pending Admins List
+        // Load Pending Admins
         private void LoadPendingAdmins()
         {
             using (SqlConnection conn = new SqlConnection(connString))
@@ -130,7 +131,6 @@ namespace JomUndang
 
                     if (e.CommandName == "Approve")
                     {
-                        // Approve User
                         string query = "UPDATE Users SET IsApproved = 1 WHERE UserID = @UserID";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
@@ -145,7 +145,6 @@ namespace JomUndang
                     }
                     else if (e.CommandName == "Reject")
                     {
-                        // Reject User
                         string query = "DELETE FROM Users WHERE UserID = @UserID";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
@@ -160,10 +159,48 @@ namespace JomUndang
                     }
                 }
 
-                // Refresh Data
                 LoadStats();
                 LoadPendingAdmins();
             }
+        }
+
+        // Load Test Results with Filter
+        private void LoadTestResults()
+        {
+            string filter = ddlFilterResult.SelectedValue;
+            string query = @"
+                SELECT u.FullName, 'Mock Test ' + CAST(tr.TestID AS VARCHAR) AS TestName, 
+                       CAST(tr.Score AS VARCHAR) + ' / 50' AS ScoreDisplay, 
+                       tr.IsPassed, tr.TestDate
+                FROM TestResults tr
+                INNER JOIN Users u ON tr.UserID = u.UserID";
+
+            if (filter == "Pass")
+                query += " WHERE tr.IsPassed = 1";
+            else if (filter == "Fail")
+                query += " WHERE tr.IsPassed = 0";
+
+            query += " ORDER BY tr.TestDate DESC";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        gvTestResults.DataSource = dt;
+                        gvTestResults.DataBind();
+                    }
+                }
+            }
+        }
+
+        // Handle Filter Change
+        protected void ddlFilterResult_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadTestResults();
         }
     }
 }
