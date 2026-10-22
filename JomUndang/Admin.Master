@@ -27,10 +27,7 @@
         <!-- Admin Menu -->
         <ul class="menu">
           <li class="dropdown">
-            <a href="AdminDashboard.aspx" class="menu-title" style="text-decoration: none;">Dashboard</a>
-          </li>
-          <li class="dropdown">
-            <a href="ManageQuestions.aspx" class="menu-title" style="text-decoration: none;">Manage Questions</a>
+            <a href="ManageTheory.aspx" class="menu-title" style="text-decoration: none;">Manage Theory</a>
           </li>
           <li class="dropdown">
             <a href="ManageTests.aspx" class="menu-title" style="text-decoration: none;">Manage Tests</a>

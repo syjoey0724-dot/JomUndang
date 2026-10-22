@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <!-- Styles -->
     <style>
-        .admin-table { width: 100%; border-collapse: collapse; table-layout: auto; }
-        .admin-table th { text-align: left; padding: 15px; background-color: #f8fafc; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
-        .admin-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
+        .admin-table { width: 100%; border-collapse: collapse; table-layout: auto; min-width: 600px; }
+        .admin-table th { text-align: left; padding: 15px; background-color: #f8fafc; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+        .admin-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; white-space: nowrap; }
         .admin-table tr:hover { background-color: #f8fafc; }
         
         .admin-table th:last-child, 
@@ -112,7 +112,7 @@
             </div>
 
             <!-- Pending Approvals Grid -->
-            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; margin-bottom: 30px;">
+            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; margin-bottom: 30px; overflow-x: auto;">
                 <div style="margin-bottom: 10px;">
                     <h3 style="margin: 0; font-size: 1.3rem; color: var(--heading); font-weight: 600;">Pending Admin Approvals</h3>
                     <p style="margin: 5px 0 20px 0; color: #64748b; font-size: 0.9rem;">People who registered as admin and are waiting for access.</p>
@@ -153,7 +153,7 @@
             </div>
 
             <!-- Test Results Grid -->
-            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;">
+            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; overflow-x: auto;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h3 style="margin: 0; font-size: 1.3rem; color: var(--heading); font-weight: 600;">Latest test results</h3>
                     

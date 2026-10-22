@@ -9,14 +9,17 @@
         <div class="auth-card">
             <span class="auth-badge">Reset Password</span>
             <h1>Forgot Password?</h1>
-            <p class="auth-subtitle">Enter your registered email and we'll send you a link to reset your password.</p>
+            <p class="auth-subtitle">Enter your registered email to reset your password.</p>
 
-            <!-- Success / error message -->
+            <!-- Message Box -->
             <asp:Panel ID="pnlMessage" runat="server" Visible="false" CssClass="auth-message">
                 <asp:Label ID="lblMessage" runat="server"></asp:Label>
             </asp:Panel>
 
-            <!-- Email -->
+            <!-- Hidden Field for Email -->
+            <asp:HiddenField ID="hiddenEmail" runat="server" />
+
+            <!-- Email Input -->
             <div class="form-group">
                 <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" Text="Email"></asp:Label>
                 <asp:TextBox ID="txtEmail" runat="server" placeholder="jom@gmail.com"></asp:TextBox>
@@ -29,14 +32,27 @@
                     Display="Dynamic" CssClass="field-error"></asp:RegularExpressionValidator>
             </div>
 
-            <asp:Button ID="btnReset" runat="server" Text="Send Reset Link"
-                CssClass="auth-btn" OnClick="btnReset_Click" />
+            <!-- New Password Input -->
+            <asp:Panel ID="pnlNewPassword" runat="server" Visible="false">
+                <div class="form-group">
+                    <asp:Label ID="lblNewPassword" runat="server" AssociatedControlID="txtNewPassword" Text="New Password"></asp:Label>
+                    <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" placeholder="At least 8 characters"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvNewPassword" runat="server"
+                        ControlToValidate="txtNewPassword" ErrorMessage="Password is required."
+                        Display="Dynamic" CssClass="field-error" ValidationGroup="ResetGroup"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="revNewPassword" runat="server"
+                        ControlToValidate="txtNewPassword" ErrorMessage="Password must be at least 8 characters."
+                        ValidationExpression="^.{8,}$" Display="Dynamic" CssClass="field-error" ValidationGroup="ResetGroup"></asp:RegularExpressionValidator>
+                </div>
+            </asp:Panel>
 
+            <!-- Buttons -->
+            <asp:Button ID="btnCheckEmail" runat="server" Text="Continue" CssClass="auth-btn" OnClick="btnCheckEmail_Click" />
+            <asp:Button ID="btnReset" runat="server" Text="Update Password" CssClass="auth-btn" OnClick="btnReset_Click" Visible="false" ValidationGroup="ResetGroup" style="margin-top: 10px;" />
+
+            <!-- Footer Links -->
             <p class="auth-footer">
                 Remembered it? <a href="Login.aspx">Back to Login</a>
-            </p>
-            <p class="auth-footer auth-footer-sub">
-                Don't have an account? <a href="Register.aspx">Register here</a>
             </p>
         </div>
     </section>
