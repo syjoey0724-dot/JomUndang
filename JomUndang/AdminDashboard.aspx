@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <!-- Styles -->
     <style>
-        .admin-table { width: 100%; border-collapse: collapse; table-layout: auto; min-width: 600px; }
+        .admin-table { width: 100%; border-collapse: collapse; table-layout: auto; min-width: 800px; }
         .admin-table th { text-align: left; padding: 15px; background-color: #f8fafc; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
         .admin-table td { padding: 15px; border-bottom: 1px solid #f1f5f9; white-space: nowrap; }
         .admin-table tr:hover { background-color: #f8fafc; }
@@ -18,6 +18,7 @@
         
         .status-pass { background-color: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
         .status-fail { background-color: #fee2e2; color: #991b1b; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .status-inactive { background-color: #f1f5f9; color: #64748b; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
         
         .filter-select { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background-color: #fff; font-size: 0.9rem; outline: none; }
         
@@ -28,6 +29,10 @@
         .v-stat-item:hover { background-color: #f8fafc; }
         .v-stat-label { color: #64748b; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
         .v-stat-value { font-size: 2rem; font-weight: 700; line-height: 1; }
+        
+        /* Text Buttons */
+        .btn-text-action { background: transparent; border: none; color: var(--heading); font-weight: 700; font-size: 0.95rem; cursor: pointer; text-decoration: none; margin-left: 15px; }
+        .btn-text-action:hover { text-decoration: underline; }
     </style>
 </asp:Content>
 
@@ -107,6 +112,10 @@
                             <span style="color: var(--accent); font-weight: 600; font-size: 0.95rem;">Manage Questions</span>
                         </a>
                     </div>
+                        <!-- Manage Topics -->
+                        <a href="ManageTopics.aspx" class="v-stat-item" style="display: flex; align-items: center; justify-content: center; min-height: 75px; background-color: #f8fafc;">
+                            <span style="color: var(--accent); font-weight: 600; font-size: 0.95rem;">Manage Topics</span>
+                        </a>
 
                 </div>
             </div>
@@ -153,7 +162,7 @@
             </div>
 
             <!-- Test Results Grid -->
-            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; overflow-x: auto;">
+            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; margin-bottom: 30px; overflow-x: auto;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h3 style="margin: 0; font-size: 1.3rem; color: var(--heading); font-weight: 600;">Latest test results</h3>
                     
@@ -185,6 +194,71 @@
                         </asp:TemplateField>
                         
                         <asp:BoundField DataField="TestDate" HeaderText="When" DataFormatString="{0:dd MMM yyyy}" ItemStyle-ForeColor="#1e1b4b" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+
+            <!-- User Management Grid -->
+            <div style="background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; overflow-x: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.3rem; color: var(--heading); font-weight: 600;">User Management</h3>
+                        <p style="margin: 5px 0 0 0; color: #64748b; font-size: 0.9rem;">Manage all registered customers and admins.</p>
+                    </div>
+                    
+                    <!-- Add User Form -->
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <asp:TextBox ID="txtNewUserName" runat="server" placeholder="Name" CssClass="filter-select" style="width: 120px;"></asp:TextBox>
+                        <asp:TextBox ID="txtNewUserEmail" runat="server" placeholder="Email" CssClass="filter-select" style="width: 180px;"></asp:TextBox>
+                        <asp:TextBox ID="txtNewUserPassword" runat="server" placeholder="Password" TextMode="Password" CssClass="filter-select" style="width: 120px;"></asp:TextBox>
+                        <asp:DropDownList ID="ddlNewUserRole" runat="server" CssClass="filter-select">
+                            <asp:ListItem Text="Customer" Value="Customer"></asp:ListItem>
+                            <asp:ListItem Text="Admin" Value="Admin"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:Button ID="btnAddUser" runat="server" Text="Add User" CssClass="cta-button" OnClick="btnAddUser_Click" style="padding: 10px 20px; font-size: 0.9rem; border-radius: 8px;" />
+                    </div>
+                </div>
+
+                <asp:Panel ID="pnlUserMessage" runat="server" Visible="false" CssClass="auth-message"></asp:Panel>
+
+                <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" 
+                    CssClass="admin-table" GridLines="None" Width="100%"
+                    OnRowCommand="gvUsers_RowCommand"
+                    EmptyDataText="No users found.">
+                    <Columns>
+                        <asp:BoundField DataField="FullName" HeaderText="Full Name" ItemStyle-ForeColor="#1e1b4b" ItemStyle-Font-Bold="true" />
+                        <asp:BoundField DataField="Email" HeaderText="Email" ItemStyle-ForeColor="#64748b" />
+                        <asp:BoundField DataField="Role" HeaderText="Role" ItemStyle-ForeColor="#64748b" />
+                        
+                        <asp:TemplateField HeaderText="Status">
+                            <ItemTemplate>
+                                <span class='<%# Convert.ToBoolean(Eval("IsActive")) ? "status-pass" : "status-inactive" %>'>
+                                    <%# Convert.ToBoolean(Eval("IsActive")) ? "Active" : "Inactive" %>
+                                </span>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField HeaderText="Actions" HeaderStyle-HorizontalAlign="Right" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="200px">
+                            <ItemTemplate>
+                                <!-- Toggle Active -->
+                                <asp:LinkButton ID="btnToggleActive" runat="server" 
+                                    CommandName="ToggleActive" 
+                                    CommandArgument='<%# Eval("UserID") %>' 
+                                    CssClass="btn-text-action" 
+                                    Text='<%# Convert.ToBoolean(Eval("IsActive")) ? "Deactivate" : "Activate" %>'>
+                                </asp:LinkButton>
+
+                                <!-- Delete User -->
+                                <asp:LinkButton ID="btnDeleteUser" runat="server" 
+                                    CommandName="DeleteUser" 
+                                    CommandArgument='<%# Eval("UserID") %>' 
+                                    CssClass="btn-text-action" 
+                                    Style="color: #dc2626;" 
+                                    OnClientClick="return confirm('Are you sure you want to delete this user?');">
+                                    Delete
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
